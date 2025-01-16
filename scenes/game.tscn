@@ -1,3 +1,62 @@
-[gd_scene format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=6 format=3 uid="uid://t8fgrjiynll"]
+
+[ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
+[ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
+[ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_msw5g"]
+normal = Vector2(0, -20)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7rf07"]
+normal = Vector2(0, 20)
 
 [node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="Panel" parent="."]
+z_index = -10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = -400.0
+offset_right = 650.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="Floor" type="CollisionShape2D" parent="Borders"]
+position = Vector2(0, 250)
+shape = SubResource("WorldBoundaryShape2D_msw5g")
+
+[node name="Ceiling" type="CollisionShape2D" parent="Borders"]
+position = Vector2(0, -325)
+shape = SubResource("WorldBoundaryShape2D_7rf07")
+
+[node name="ColorRect" type="ColorRect" parent="Borders"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -615.0
+offset_top = 250.0
+offset_right = 615.0
+offset_bottom = 375.0
+grow_horizontal = 2
+color = Color(0.0496345, 0.193448, 0.0505635, 1)
+
+[node name="ObstacleSpawner" parent="." instance=ExtResource("1_460rf")]
+position = Vector2(1200, 0)
+
+[node name="ObstaclesDestroyer" parent="." instance=ExtResource("2_ebjsg")]
+position = Vector2(-1200, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_j150p")]
+position = Vector2(-280, 205)

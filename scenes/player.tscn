@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1vodkkgv5gqv"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_0dbfk"]
+[ext_resource type="Texture2D" uid="uid://c54483424fuag" path="res://assets/sprites/jetpack_mage.png" id="2_ecbqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jghlj"]
+size = Vector2(80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymtq3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ecbqq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 5
+script = ExtResource("1_0dbfk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jghlj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_ymtq3")

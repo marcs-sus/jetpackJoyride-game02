@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwbvvk7xeyvsj"]
+
+[ext_resource type="Script" path="res://scripts/ObstaclesDestroyer.cs" id="1_uus5b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0787h"]
+size = Vector2(100, 800)
+
+[node name="ObstaclesDestroyer" type="Area2D"]
+script = ExtResource("1_uus5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0787h")
+
+[connection signal="area_entered" from="." to="." method="_OnAreaEntered"]
