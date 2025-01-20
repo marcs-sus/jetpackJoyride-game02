@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=10 format=3 uid="uid://t8fgrjiynll"]
 
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
+[ext_resource type="PackedScene" uid="uid://lnl6mvnxvlb6" path="res://scenes/game_manager.tscn" id="1_g2kvj"]
 [ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
+[ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_1m5h1"]
+[ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
 [ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
+[ext_resource type="Script" path="res://scripts/HighScore.cs" id="4_i44jo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_msw5g"]
 normal = Vector2(0, -20)
@@ -12,8 +16,33 @@ normal = Vector2(0, 20)
 
 [node name="Game" type="Node2D"]
 
-[node name="GameManager" type="Node" parent="."]
-unique_name_in_owner = true
+[node name="GameManager" parent="." instance=ExtResource("1_g2kvj")]
+
+[node name="Score" type="Label" parent="."]
+offset_left = -533.0
+offset_top = -254.0
+offset_right = -439.0
+offset_bottom = -225.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 32
+text = "0000M"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_7yfne")
+
+[node name="HighScore" type="Label" parent="."]
+offset_left = -545.0
+offset_top = -220.0
+offset_right = -428.0
+offset_bottom = -204.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 18
+text = "Best: 0000M"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_i44jo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -34,23 +63,34 @@ grow_vertical = 2
 [node name="Borders" type="StaticBody2D" parent="."]
 
 [node name="Floor" type="CollisionShape2D" parent="Borders"]
-position = Vector2(0, 250)
+position = Vector2(0, 275)
 shape = SubResource("WorldBoundaryShape2D_msw5g")
 
-[node name="Ceiling" type="CollisionShape2D" parent="Borders"]
-position = Vector2(0, -325)
-shape = SubResource("WorldBoundaryShape2D_7rf07")
-
-[node name="ColorRect" type="ColorRect" parent="Borders"]
+[node name="FloorColor" type="ColorRect" parent="Borders"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -615.0
-offset_top = 250.0
+offset_top = 275.0
 offset_right = 615.0
-offset_bottom = 375.0
+offset_bottom = 400.0
 grow_horizontal = 2
 color = Color(0.0496345, 0.193448, 0.0505635, 1)
+
+[node name="Ceiling" type="CollisionShape2D" parent="Borders"]
+position = Vector2(0, -275)
+shape = SubResource("WorldBoundaryShape2D_7rf07")
+
+[node name="CeilingColor" type="ColorRect" parent="Borders"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -615.0
+offset_top = -400.0
+offset_right = 615.0
+offset_bottom = -275.0
+grow_horizontal = 2
+color = Color(0, 0.159128, 0.314605, 1)
 
 [node name="ObstacleSpawner" parent="." instance=ExtResource("1_460rf")]
 position = Vector2(1200, 0)
@@ -59,4 +99,4 @@ position = Vector2(1200, 0)
 position = Vector2(-1200, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_j150p")]
-position = Vector2(-280, 205)
+position = Vector2(-240, 230)

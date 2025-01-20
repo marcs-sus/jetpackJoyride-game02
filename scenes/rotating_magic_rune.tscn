@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpvbqjsmr1a25"]
+
+[ext_resource type="Script" path="res://scripts/RotatingMagicRune.cs" id="1_nbtvi"]
+[ext_resource type="Texture2D" uid="uid://dpcccqtlw6227" path="res://assets/sprites/magic_current.png" id="2_x237s"]
+[ext_resource type="Texture2D" uid="uid://cxee25wqklu2d" path="res://assets/sprites/magic_rune.png" id="3_0vgfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dujx7"]
+size = Vector2(250, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j72e2"]
+size = Vector2(150, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_islvw"]
+size = Vector2(50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ocb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0vgfd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RotatingMagicRune" type="Area2D" groups=["Obstacle"]]
+script = ExtResource("1_nbtvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dujx7")
+
+[node name="MagicCurrent" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagicCurrent"]
+shape = SubResource("RectangleShape2D_j72e2")
+
+[node name="Line2D" type="Line2D" parent="MagicCurrent"]
+texture_repeat = 2
+points = PackedVector2Array(80, 0, -80, 0)
+width = 32.0
+texture = ExtResource("2_x237s")
+texture_mode = 1
+
+[node name="Rune1" type="Area2D" parent="."]
+position = Vector2(100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rune1"]
+shape = SubResource("RectangleShape2D_islvw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rune1"]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_4ocb7")
+
+[node name="Rune2" type="Area2D" parent="."]
+position = Vector2(-100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rune2"]
+shape = SubResource("RectangleShape2D_islvw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rune2"]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_4ocb7")
+
+[connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

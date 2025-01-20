@@ -1,9 +1,10 @@
 using Godot;
 using System;
 
-public partial class MagicRune : Area2D
+public partial class RotatingMagicRune : Area2D
 {
 	[Export] public float FLyVelocity = -5.0f;
+	[Export] public float RotationSpeed = -10.0f;
 
 	private GameManager gameManager;
 	private Random random = new Random();
@@ -11,32 +12,32 @@ public partial class MagicRune : Area2D
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("../../GameManager");
-
-		int rotationCases = random.Next(0, 4);
-		switch (rotationCases)
-		{
-			case 0:
-				RotationDegrees = 0;
-				break;
-			case 1:
-				RotationDegrees = 90;
-				break;
-			case 2:
-				RotationDegrees = 45;
-				break;
-			case 3:
-				RotationDegrees = -45;
-				break;
-			default:
-				RotationDegrees = 0;
-				GD.Print("Error on defining rotation");
-				break;
-		}
 	}
 
 	public override void _Process(double delta)
 	{
-		Position += new Vector2(FLyVelocity, 0) * ((float)delta * 80.0f);
+		Position += new Vector2(FLyVelocity, 0) * ((float)delta * 100.0f);
+
+		int rotationSpeedCases = random.Next(0, 3);
+		switch (rotationSpeedCases)
+		{
+			case 0:
+				RotationSpeed = -5.0f;
+				break;
+			
+			case 1:
+				RotationSpeed = -10.0f;
+				break;
+
+			case 2:
+				RotationSpeed = -15.0f;
+				break;
+
+			default:
+				GD.Print("Error on defining rotation speed");
+				break;
+		}
+		RotationDegrees += RotationSpeed * ((float)delta * 20.0f);
 	}
 
 	private void _OnBodyEntered(Node2D body)
