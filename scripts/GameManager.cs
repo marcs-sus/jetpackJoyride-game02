@@ -1,19 +1,29 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.IO;
 
 public partial class GameManager : Node
 {
 	[Export] public int ScoreIncreaseRate = 2;
 
-	public int CurrentScore  = 0;
+	public int CurrentScore = 0;
 	public int HighScore = 0;
 
 	private bool isTrackingScore = false;
 	private float floatScore = 0.0f;
 
+	Dictionary data = new Dictionary();
+	Json jsonLoader = new Json();
+	private readonly string filePath = ProjectSettings.GlobalizePath("user://saves/");
+	private readonly string fileName = "save_data.json";
+
+
 	public override void _Ready()
 	{
-		CurrentScore  = 0;
+		LoadDataFromFile();
+
+		CurrentScore = 0;
 		floatScore = 0.0f;
 
 		StartScoreTracking();
@@ -25,6 +35,11 @@ public partial class GameManager : Node
 		{
 			CurrentScore += (int)(floatScore += (float)delta * ScoreIncreaseRate);
 			floatScore %= 1.0f;
+
+			if (CurrentScore > HighScore)
+			{
+				HighScore = CurrentScore;
+			}
 		}
 	}
 
@@ -35,11 +50,54 @@ public partial class GameManager : Node
 
 	public void StopScoreTracking()
 	{
-		isTrackingScore = false;
-
-		if (CurrentScore > HighScore)
+		if (CurrentScore >= HighScore)
 		{
 			HighScore = CurrentScore;
+
+			SaveDataOnFile("high_score", HighScore);
+		}
+
+		isTrackingScore = false;
+	}
+
+	private void SaveDataOnFile(string dataName, int dataToSave)
+	{
+		string path = Path.Join(filePath, fileName);
+
+		data[dataName] = dataToSave;
+
+		string jsonData = Json.Stringify(data);
+		File.WriteAllText(path, jsonData);
+
+		GD.Print($"Saved on {path} with data: {data}");
+	}
+
+	private void LoadDataFromFile()
+	{
+		string path = Path.Join(filePath, fileName);
+
+		if (File.Exists(path))
+		{
+			string jsonData = File.ReadAllText(path);
+			Error error = jsonLoader.Parse(jsonData);
+
+			if (error == Error.Ok)
+			{
+				data = (Dictionary)jsonLoader.Data;
+
+				HighScore = (int)data["high_score"];
+				//Coins = (int)data["coin_count"];
+
+				GD.Print($"Loaded from {path} with data: {data}");
+			}
+			else if (error != Error.Ok)
+			{
+				GD.Print($"Error loading save data: {error}");
+			}
+		}
+		else if (!File.Exists(path))
+		{
+			GD.Print($"Save file on {path} does not exist");
 		}
 	}
 }

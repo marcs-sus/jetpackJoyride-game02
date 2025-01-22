@@ -15,7 +15,7 @@ public partial class ObstacleSpawner : Node2D
 		timer = new Timer();
 		AddChild(timer);
 		timer.WaitTime = SpawnInterval;
-		timer.Timeout += _SpawnObstacle;
+		timer.Timeout += SpawnObstacle;
 		timer.Start();
 	}
 
@@ -24,7 +24,7 @@ public partial class ObstacleSpawner : Node2D
 
 	}
 
-	private void _SpawnObstacle()
+	private void SpawnObstacle()
 	{
 		if (ObstacleScene == null)
 		{
@@ -42,39 +42,49 @@ public partial class ObstacleSpawner : Node2D
 		switch (RandomObstacle)
 		{
 			case 0: // Static Magic Rune
-				switch (obstacleInstance.RotationDegrees)
-				{
-					case 0:
-						randomY = (float)GD.RandRange(-MaxSpawnY + 50.0f, MaxSpawnY - 50.0f);
-						GD.Print($"Spawned {obstacleInstance.Name} with {obstacleInstance.RotationDegrees}°");
-						break;
-					case 90:
-						randomY = (float)GD.RandRange(-MaxSpawnY + 125, MaxSpawnY - 125);
-						GD.Print($"Spawned {obstacleInstance.Name} with {obstacleInstance.RotationDegrees}°");
-						break;
-					case 45:
-						randomY = (float)GD.RandRange(-MaxSpawnY + 105, MaxSpawnY - 105);
-						GD.Print($"Spawned {obstacleInstance.Name} with {obstacleInstance.RotationDegrees}°");
-						break;
-					case -45:
-						randomY = (float)GD.RandRange(-MaxSpawnY + 105, MaxSpawnY - 105);
-						GD.Print($"Spawned {obstacleInstance.Name} with {obstacleInstance.RotationDegrees}°");
-						break;
-				}
-
-				obstacleInstance.Position = new Vector2(0, randomY);
+				SpawnMagicRune(obstacleInstance, randomY, MaxSpawnY);
 				break;
 
 			case 1: // Rotating Magic Rune
-				randomY = (float)GD.RandRange(-MaxSpawnY + 125, MaxSpawnY - 125);
-				GD.Print($"Spawned {obstacleInstance.Name}");
-
-				obstacleInstance.Position = new Vector2(0, randomY);
+				SpawnRotatingMagicRune(obstacleInstance, randomY, MaxSpawnY);
 				break;
 
 			default:
 				GD.Print("Error on spawning obstacle");
 				break;
 		}
+	}
+
+	private void SpawnMagicRune(Area2D obstacle, float position, float maxPosition)
+	{
+		switch (obstacle.RotationDegrees)
+		{
+			case 0:
+				position = (float)GD.RandRange(-maxPosition + 50.0f, maxPosition - 50.0f);
+				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
+				break;
+			case 90:
+				position = (float)GD.RandRange(-maxPosition + 125, maxPosition - 125);
+				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
+				break;
+			case 45:
+				position = (float)GD.RandRange(-maxPosition + 105, maxPosition - 105);
+				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
+				break;
+			case -45:
+				position = (float)GD.RandRange(-maxPosition + 105, maxPosition - 105);
+				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
+				break;
+		}
+
+		obstacle.Position = new Vector2(0, position);
+	}
+
+	private void SpawnRotatingMagicRune(Area2D obstacle, float position, float maxPosition)
+	{
+		position = (float)GD.RandRange(-maxPosition + 125, maxPosition - 125);
+		GD.Print($"Spawned {obstacle.Name}");
+
+		obstacle.Position = new Vector2(0, position);
 	}
 }

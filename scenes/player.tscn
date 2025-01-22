@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1vodkkgv5gqv"]
+[gd_scene load_steps=6 format=3 uid="uid://b1vodkkgv5gqv"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_0dbfk"]
+[ext_resource type="Texture2D" uid="uid://4oy2ry3wsu86" path="res://assets/sprites/magic_shoot.png" id="2_74qv8"]
 [ext_resource type="Texture2D" uid="uid://c54483424fuag" path="res://assets/sprites/jetpack_mage.png" id="2_ecbqq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jghlj"]
@@ -20,6 +21,23 @@ animations = [{
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
 script = ExtResource("1_0dbfk")
+
+[node name="Projectiles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 35)
+emitting = false
+amount = 30
+lifetime = 5.0
+randomness = 1.0
+texture = ExtResource("2_74qv8")
+direction = Vector2(0, 1)
+spread = 12.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+angle_max = 90.0
+scale_amount_min = 0.15
+scale_amount_max = 0.15
+color = Color(0.364706, 0.14902, 0.407843, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jghlj")

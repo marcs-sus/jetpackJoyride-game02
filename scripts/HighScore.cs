@@ -12,6 +12,6 @@ public partial class HighScore : Label
 
 	public override void _Process(double delta)
 	{
-		this.Text = $"Best: {gameManager.CurrentScore.ToString("D4")}M";
+		this.Text = $"Best: {gameManager.HighScore.ToString("D4")}M";
 	}
 }
