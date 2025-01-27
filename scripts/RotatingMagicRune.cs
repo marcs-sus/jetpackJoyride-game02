@@ -34,7 +34,7 @@ public partial class RotatingMagicRune : Area2D
 				break;
 
 			default:
-				GD.Print("Error on defining rotation speed");
+				GD.PrintErr("Error on defining rotation speed");
 				break;
 		}
 		RotationDegrees += RotationSpeed * ((float)delta * 20.0f);

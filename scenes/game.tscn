@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=11 format=3 uid="uid://t8fgrjiynll"]
 
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
 [ext_resource type="PackedScene" uid="uid://lnl6mvnxvlb6" path="res://scenes/game_manager.tscn" id="1_g2kvj"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
 [ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
 [ext_resource type="Script" path="res://scripts/HighScore.cs" id="4_i44jo"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yyy72"]
+polygon = PackedVector2Array(-615, -300, 615, -300, 615, -400, -615, -400)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_msw5g"]
 normal = Vector2(0, -20)
@@ -62,6 +65,10 @@ grow_vertical = 2
 
 [node name="Borders" type="StaticBody2D" parent="."]
 
+[node name="ParticlesHider" type="LightOccluder2D" parent="Borders"]
+position = Vector2(0, 672)
+occluder = SubResource("OccluderPolygon2D_yyy72")
+
 [node name="Floor" type="CollisionShape2D" parent="Borders"]
 position = Vector2(0, 275)
 shape = SubResource("WorldBoundaryShape2D_msw5g")
@@ -99,4 +106,5 @@ position = Vector2(1200, 0)
 position = Vector2(-1200, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_j150p")]
+unique_name_in_owner = true
 position = Vector2(-250, 230)

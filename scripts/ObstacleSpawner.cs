@@ -8,14 +8,17 @@ public partial class ObstacleSpawner : Node2D
 	[Export] public float SpawnInterval = 2.0f;
 
 	private Timer timer;
+	private CharacterBody2D player;
 	private Random random = new Random();
 
 	public override void _Ready()
 	{
+		player = GetNode<CharacterBody2D>("../Player");
+
 		timer = new Timer();
 		AddChild(timer);
 		timer.WaitTime = SpawnInterval;
-		timer.Timeout += SpawnObstacle;
+		timer.Timeout += _OnTimerTimeout;
 		timer.Start();
 	}
 
@@ -24,11 +27,16 @@ public partial class ObstacleSpawner : Node2D
 
 	}
 
+	private void _OnTimerTimeout()
+	{
+		SpawnObstacle();
+	}
+
 	private void SpawnObstacle()
 	{
 		if (ObstacleScene == null)
 		{
-			GD.Print("No obstacle scene assigned");
+			GD.PrintErr("No obstacle scene assigned");
 			return;
 		}
 
@@ -37,26 +45,32 @@ public partial class ObstacleSpawner : Node2D
 		AddChild(obstacleInstance);
 
 		// Ceiling -> -275	Floor -> 275
-		float MaxSpawnY = 275.0f, randomY = 0.0f;
+		const float MaxSpawnY = 275.0f;
 
 		switch (RandomObstacle)
 		{
 			case 0: // Static Magic Rune
-				SpawnMagicRune(obstacleInstance, randomY, MaxSpawnY);
+				SpawnMagicRune(obstacleInstance, MaxSpawnY);
 				break;
 
 			case 1: // Rotating Magic Rune
-				SpawnRotatingMagicRune(obstacleInstance, randomY, MaxSpawnY);
+				SpawnRotatingMagicRune(obstacleInstance, MaxSpawnY);
+				break;
+
+			case 2: // Homing Magic Projectile
+				SpawnHomingMagic(obstacleInstance, MaxSpawnY);
 				break;
 
 			default:
-				GD.Print("Error on spawning obstacle");
+				GD.PrintErr("Error on spawning obstacle");
 				break;
 		}
 	}
 
-	private void SpawnMagicRune(Area2D obstacle, float position, float maxPosition)
+	private void SpawnMagicRune(Area2D obstacle, float maxPosition)
 	{
+		float position = 0.0f;
+
 		switch (obstacle.RotationDegrees)
 		{
 			case 0:
@@ -64,15 +78,15 @@ public partial class ObstacleSpawner : Node2D
 				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
 				break;
 			case 90:
-				position = (float)GD.RandRange(-maxPosition + 125, maxPosition - 125);
+				position = (float)GD.RandRange(-maxPosition + 125.0f, maxPosition - 125.0f);
 				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
 				break;
 			case 45:
-				position = (float)GD.RandRange(-maxPosition + 105, maxPosition - 105);
+				position = (float)GD.RandRange(-maxPosition + 105.0f, maxPosition - 105.0f);
 				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
 				break;
 			case -45:
-				position = (float)GD.RandRange(-maxPosition + 105, maxPosition - 105);
+				position = (float)GD.RandRange(-maxPosition + 105.0f, maxPosition - 105.0f);
 				GD.Print($"Spawned {obstacle.Name} with {obstacle.RotationDegrees}°");
 				break;
 		}
@@ -80,9 +94,19 @@ public partial class ObstacleSpawner : Node2D
 		obstacle.Position = new Vector2(0, position);
 	}
 
-	private void SpawnRotatingMagicRune(Area2D obstacle, float position, float maxPosition)
+	private void SpawnRotatingMagicRune(Area2D obstacle, float maxPosition)
 	{
-		position = (float)GD.RandRange(-maxPosition + 125, maxPosition - 125);
+		float position = (float)GD.RandRange(-maxPosition + 125.0f, maxPosition - 125.0f);
+		GD.Print($"Spawned {obstacle.Name}");
+
+		obstacle.Position = new Vector2(0, position);
+	}
+
+	private void SpawnHomingMagic(Area2D obstacle, float maxPosition)
+	{
+		float position = 0.0f;
+		if (player != null)
+			position = player.Position.Y;
 		GD.Print($"Spawned {obstacle.Name}");
 
 		obstacle.Position = new Vector2(0, position);

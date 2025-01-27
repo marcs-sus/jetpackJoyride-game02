@@ -69,7 +69,7 @@ public partial class GameManager : Node
 		string jsonData = Json.Stringify(data);
 		File.WriteAllText(path, jsonData);
 
-		GD.Print($"Saved on {path} with data: {data}");
+		GD.Print($"Saved data on {path}\n\t --> {dataName} : {data[dataName]}");
 	}
 
 	private void LoadDataFromFile()
@@ -88,16 +88,16 @@ public partial class GameManager : Node
 				HighScore = (int)data["high_score"];
 				//Coins = (int)data["coin_count"];
 
-				GD.Print($"Loaded from {path} with data: {data}");
+				GD.Print($"Loaded data from {path}\n\t--> {data}");
 			}
 			else if (error != Error.Ok)
 			{
-				GD.Print($"Error loading save data: {error}");
+				GD.PrintErr($"Error loading save data: {error}");
 			}
 		}
 		else if (!File.Exists(path))
 		{
-			GD.Print($"Save file on {path} does not exist");
+			GD.PrintErr($"Save file on {path} does not exist");
 		}
 	}
 }

@@ -29,7 +29,7 @@ public partial class MagicRune : Area2D
 				break;
 			default:
 				RotationDegrees = 0;
-				GD.Print("Error on defining rotation");
+				GD.PrintErr("Error on defining rotation");
 				break;
 		}
 	}

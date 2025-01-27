@@ -6,11 +6,11 @@ public partial class Player : CharacterBody2D
 	[Export] public float FlySpeed = -500.0f;
 	[Export] public float Acceleration = 1000.0f;
 
-	private CpuParticles2D projectileParticles;
+	private GpuParticles2D projectileParticles;
 
 	public override void _Ready()
 	{
-		projectileParticles = GetNode<CpuParticles2D>("Projectiles");
+		projectileParticles = GetNode<GpuParticles2D>("Projectiles");
 	}
 
 	public override void _PhysicsProcess(double delta)
