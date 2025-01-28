@@ -24,7 +24,7 @@ public partial class RotatingMagicRune : Area2D
 			case 0:
 				RotationSpeed = -5.0f;
 				break;
-			
+
 			case 1:
 				RotationSpeed = -10.0f;
 				break;

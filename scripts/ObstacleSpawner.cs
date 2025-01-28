@@ -1,10 +1,11 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class ObstacleSpawner : Node2D
 {
 	[Export] public PackedScene[] ObstacleScene;
-	[Export] public float[] ObstacleRarity = { 50.0f, 30.0f, 20.0f }; // TODO
+	[Export] public int[] ObstacleRarity = { 40, 35, 25 }; // Must contain same number and order as ObstacleScene
 	[Export] public float SpawnInterval = 2.0f;
 
 	private Timer timer;
@@ -22,14 +23,12 @@ public partial class ObstacleSpawner : Node2D
 		timer.Start();
 	}
 
-	public override void _Process(double delta)
-	{
-
-	}
-
 	private void _OnTimerTimeout()
 	{
-		SpawnObstacle();
+		if (player != null)
+		{
+			SpawnObstacle();
+		}
 	}
 
 	private void SpawnObstacle()
@@ -40,14 +39,14 @@ public partial class ObstacleSpawner : Node2D
 			return;
 		}
 
-		int RandomObstacle = random.Next(ObstacleScene.Length);
-		Area2D obstacleInstance = (Area2D)ObstacleScene[RandomObstacle].Instantiate();
+		int RandomizedObstacle = GetRandomizedObstacle();
+		Area2D obstacleInstance = (Area2D)ObstacleScene[RandomizedObstacle].Instantiate();
 		AddChild(obstacleInstance);
 
 		// Ceiling -> -275	Floor -> 275
 		const float MaxSpawnY = 275.0f;
 
-		switch (RandomObstacle)
+		switch (RandomizedObstacle)
 		{
 			case 0: // Static Magic Rune
 				SpawnMagicRune(obstacleInstance, MaxSpawnY);
@@ -65,6 +64,21 @@ public partial class ObstacleSpawner : Node2D
 				GD.PrintErr("Error on spawning obstacle");
 				break;
 		}
+	}
+
+	private int GetRandomizedObstacle()
+	{
+		int randomWeight = random.Next(ObstacleRarity.Sum()); // Linq.Sum()
+
+		int cumulativeWeight = 0;
+		for (int i = 0; i < ObstacleRarity.Length; i++)
+		{
+			cumulativeWeight += ObstacleRarity[i];
+			if (randomWeight < cumulativeWeight)
+				return i;
+		}
+
+		return -1;
 	}
 
 	private void SpawnMagicRune(Area2D obstacle, float maxPosition)
@@ -104,9 +118,7 @@ public partial class ObstacleSpawner : Node2D
 
 	private void SpawnHomingMagic(Area2D obstacle, float maxPosition)
 	{
-		float position = 0.0f;
-		if (player != null)
-			position = player.Position.Y;
+		float position = player != null ? player.Position.Y : 0.0f;
 		GD.Print($"Spawned {obstacle.Name}");
 
 		obstacle.Position = new Vector2(0, position);

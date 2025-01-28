@@ -35,7 +35,7 @@ public partial class GameManager : Node
 		{
 			GetTree().ChangeSceneToFile("res://scenes/menu.tscn");
 		}
-		
+
 		if (isTrackingScore)
 		{
 			CurrentScore += (int)(floatScore += (float)delta * ScoreIncreaseRate);

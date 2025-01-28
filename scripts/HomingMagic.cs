@@ -35,10 +35,12 @@ public partial class HomingMagic : Area2D
 		{
 			Position += new Vector2(FLyVelocity, 0) * ((float)delta * 80.0f);
 		}
-		else if (!isWaningFinished)
+		else if (!isWaningFinished && player != null)
 		{
 			if (player != null)
+			{
 				Position = new Vector2(Position.X, Mathf.Lerp(Position.Y, player.Position.Y, HomingSpeed * (float)delta));
+			}
 		}
 	}
 
