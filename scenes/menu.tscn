@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2hirncocafyr"]
+
+[ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="1_25wmr"]
+[ext_resource type="Script" path="res://scripts/Menu.cs" id="1_tmhsb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vryhh"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tmhsb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.282986
+anchor_top = 0.0617284
+anchor_right = 0.717014
+anchor_bottom = 0.29321
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_25wmr")
+theme_override_font_sizes/font_size = 86
+text = "Tittle_Template"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.369792
+anchor_top = 0.347222
+anchor_right = 0.630208
+anchor_bottom = 0.756173
+offset_top = 1.52588e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_25wmr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vryhh")
+text = "Play"
+
+[node name="Unlocks" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_25wmr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vryhh")
+text = "Unlocks"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_25wmr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vryhh")
+text = "Options"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_25wmr")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vryhh")
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_OnPlayPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Unlocks" to="." method="_OnUnlocksPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_OnOptionsPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_OnExitPressed"]

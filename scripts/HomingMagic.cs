@@ -5,6 +5,7 @@ public partial class HomingMagic : Area2D
 {
 	[Export] public float FLyVelocity = -10.0f;
 	[Export] public float WarningTimer = 2.5f;
+	[Export] public float HomingSpeed = 1.0f;
 
 	private bool isWaningFinished = false;
 
@@ -30,14 +31,14 @@ public partial class HomingMagic : Area2D
 
 	public override void _Process(double delta)
 	{
-		if (!isWaningFinished)
-		{
-			if (player != null)
-				Position = new Vector2(Position.X, player.Position.Y);
-		}
-		else if (isWaningFinished)
+		if (isWaningFinished)
 		{
 			Position += new Vector2(FLyVelocity, 0) * ((float)delta * 80.0f);
+		}
+		else if (!isWaningFinished)
+		{
+			if (player != null)
+				Position = new Vector2(Position.X, Mathf.Lerp(Position.Y, player.Position.Y, HomingSpeed * (float)delta));
 		}
 	}
 

@@ -31,6 +31,11 @@ public partial class GameManager : Node
 
 	public override void _Process(double delta)
 	{
+		if (Input.IsActionJustPressed("quit"))
+		{
+			GetTree().ChangeSceneToFile("res://scenes/menu.tscn");
+		}
+		
 		if (isTrackingScore)
 		{
 			CurrentScore += (int)(floatScore += (float)delta * ScoreIncreaseRate);
