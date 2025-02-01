@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=14 format=3 uid="uid://t8fgrjiynll"]
 
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
 [ext_resource type="PackedScene" uid="uid://lnl6mvnxvlb6" path="res://scenes/game_manager.tscn" id="1_g2kvj"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
 [ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
 [ext_resource type="Script" path="res://scripts/HighScore.cs" id="4_i44jo"]
+[ext_resource type="Script" path="res://scripts/CoinsLabel.cs" id="5_1k2pe"]
+[ext_resource type="Texture2D" uid="uid://bev3x376407eb" path="res://assets/sprites/coin.png" id="5_mdaw2"]
+[ext_resource type="PackedScene" uid="uid://cfusuegia5qch" path="res://scenes/coin_spawner.tscn" id="9_t7mtx"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yyy72"]
 polygon = PackedVector2Array(-615, -300, 615, -300, 615, -400, -615, -400)
@@ -46,6 +49,24 @@ text = "Best: 0000M"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_i44jo")
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = -520.0
+offset_top = -190.0
+offset_right = -470.0
+offset_bottom = -172.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("5_1k2pe")
+
+[node name="Sprite2D" type="Sprite2D" parent="CoinsLabel"]
+position = Vector2(-15, 9)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("5_mdaw2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -101,6 +122,9 @@ color = Color(0, 0.159128, 0.314605, 1)
 
 [node name="ObstacleSpawner" parent="." instance=ExtResource("1_460rf")]
 position = Vector2(1200, 0)
+
+[node name="CoinSpawner" parent="." instance=ExtResource("9_t7mtx")]
+position = Vector2(1300, 0)
 
 [node name="ObstaclesDestroyer" parent="." instance=ExtResource("2_ebjsg")]
 position = Vector2(-1200, 0)

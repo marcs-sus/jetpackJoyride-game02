@@ -3,6 +3,9 @@
         "Eixists",
         "Jetpack",
         "Lerp",
-        "Mathf"
-    ]
+        "Mathf",
+        "tscn",
+        "Unlockables"
+    ],
+    "godotTools.editorPath.godot4": "c:\\Users\\lilia\\Executable Programs\\Godot\\Godot_v4.3-stable_mono_win64.exe"
 }

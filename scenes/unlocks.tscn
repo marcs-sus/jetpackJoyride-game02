@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr6ptxtv46k7l"]
+[gd_scene load_steps=7 format=3 uid="uid://cr6ptxtv46k7l"]
 
 [ext_resource type="Script" path="res://scripts/Unlocks.cs" id="1_ujdo7"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_vo6y8"]
+[ext_resource type="Texture2D" uid="uid://c54483424fuag" path="res://assets/sprites/jetpack_mage.png" id="3_j0fwe"]
+[ext_resource type="Texture2D" uid="uid://bev3x376407eb" path="res://assets/sprites/coin.png" id="5_gjapp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1iue"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_bsqfj"]
 
 [node name="Unlocks" type="Control"]
 layout_mode = 3
@@ -40,16 +52,119 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 45.0
+offset_right = 150.0
+offset_bottom = 65.0
+scale = Vector2(1.74209, 1.74209)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_vo6y8")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CoinsLabel"]
+position = Vector2(-15, 9)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("5_gjapp")
+
+[node name="Back" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.887346
+anchor_right = 0.578125
+anchor_bottom = 0.964506
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_vo6y8")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_x1iue")
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109375
+anchor_top = 0.246914
+anchor_right = 0.890625
+anchor_bottom = 0.833333
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Skin1" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_vo6y8")
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+button_group = SubResource("ButtonGroup_bsqfj")
+text = "Default"
+icon = ExtResource("3_j0fwe")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Skin2" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_vo6y8")
+theme_override_font_sizes/font_size = 32
+button_group = SubResource("ButtonGroup_bsqfj")
+text = "Locked!
+10 Coins"
+icon = ExtResource("3_j0fwe")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Skin3" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_vo6y8")
+theme_override_font_sizes/font_size = 32
+button_group = SubResource("ButtonGroup_bsqfj")
+text = "Locked!
+20 Coins"
+icon = ExtResource("3_j0fwe")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Skin4" type="CheckButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_vo6y8")
+theme_override_font_sizes/font_size = 32
+button_group = SubResource("ButtonGroup_bsqfj")
+text = "Locked!
+30 Coins"
+icon = ExtResource("3_j0fwe")
+alignment = 1
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="pressed" from="Back" to="." method="_OnBackPressed"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/Skin1" to="." method="_OnSkin1Toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/Skin2" to="." method="_OnSkin2Toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/Skin3" to="." method="_OnSkin3Toggled"]
+[connection signal="toggled" from="VBoxContainer/GridContainer/Skin4" to="." method="_OnSkin4Toggled"]
