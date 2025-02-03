@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fb3ix1gmhod6"]
+[gd_scene load_steps=8 format=3 uid="uid://dllgpm4vxcpi0"]
 
 [ext_resource type="Texture2D" uid="uid://cxee25wqklu2d" path="res://assets/sprites/magic_rune.png" id="1_gr487"]
 [ext_resource type="Script" path="res://scripts/MagicRune.cs" id="1_ktd4e"]

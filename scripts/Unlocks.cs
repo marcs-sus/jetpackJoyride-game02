@@ -43,7 +43,7 @@ public partial class Unlocks : Control
 		for (int i = 0; i < skinCheckButtons.Length; i++)
 		{
 			if ((bool)gameManager.data[$"skin_{i + 2}"])
-			skinCheckButtons[i].Text = $"Skin {i + 2}";
+				skinCheckButtons[i].Text = $"Skin {i + 2}";
 		}
 	}
 
@@ -70,7 +70,7 @@ public partial class Unlocks : Control
 			{
 				gameManager.Coins -= SkinCost[idx];
 				skinCheckButtons[idx].Text = $"Skin {idx + 2}";
-				
+
 				gameManager.SaveDataOnFile(skinKey, true);
 				gameManager.SaveDataOnFile("coin_count", gameManager.Coins);
 				gameManager.SaveDataOnFile("active_skin", skinKey);

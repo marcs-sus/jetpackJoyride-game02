@@ -4,7 +4,7 @@ using System;
 public partial class HighScore : Label
 {
 	private GameManager gameManager;
-	
+
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("%GameManager");

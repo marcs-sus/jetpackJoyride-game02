@@ -23,6 +23,11 @@ public partial class GameManager : Node
 
 	public override void _Ready()
 	{
+		if (!Directory.Exists(filePath))
+		{
+			Directory.CreateDirectory(filePath);
+		}
+
 		LoadDataFromFile();
 
 		CurrentScore = 0;
@@ -139,7 +144,7 @@ public partial class GameManager : Node
 		}
 		else if (!File.Exists(path))
 		{
-			GD.PrintErr($"Save file on {path} does not exist, creating one...");
+			GD.Print($"Save file on {path} does not exist, creating one...");
 
 			data = new Dictionary
 			{

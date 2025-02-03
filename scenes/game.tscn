@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_1m5h1"]
 [ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
-[ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
+[ext_resource type="PackedScene" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
 [ext_resource type="Script" path="res://scripts/HighScore.cs" id="4_i44jo"]
 [ext_resource type="Script" path="res://scripts/CoinsLabel.cs" id="5_1k2pe"]
 [ext_resource type="Texture2D" uid="uid://bev3x376407eb" path="res://assets/sprites/coin.png" id="5_mdaw2"]
