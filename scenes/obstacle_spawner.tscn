@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6ptijmaaxv47"]
 
 [ext_resource type="Script" path="res://scripts/ObstacleSpawner.cs" id="1_h5c25"]
-[ext_resource type="PackedScene" uid="uid://fb3ix1gmhod6" path="res://scenes/magic_rune.tscn" id="2_5mle8"]
+[ext_resource type="PackedScene" uid="uid://dllgpm4vxcpi0" path="res://scenes/magic_rune.tscn" id="2_5mle8"]
 [ext_resource type="PackedScene" uid="uid://bpvbqjsmr1a25" path="res://scenes/rotating_magic_rune.tscn" id="3_41ylg"]
 [ext_resource type="PackedScene" uid="uid://bgrhvwxdn4fis" path="res://scenes/homing_magic.tscn" id="4_nsqe6"]
 

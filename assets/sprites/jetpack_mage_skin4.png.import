@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b05crfdhjls6m"
-path="res://.godot/imported/warning.png-df6138690569530dfb2c407b7c7c21b3.ctex"
+uid="uid://bt8afneh8qthy"
+path="res://.godot/imported/jetpack_mage_skin4.png-f7ccdd6bd73b9e61726831a7525daf88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/warning.png"
-dest_files=["res://.godot/imported/warning.png-df6138690569530dfb2c407b7c7c21b3.ctex"]
+source_file="res://assets/sprites/jetpack_mage_skin4.png"
+dest_files=["res://.godot/imported/jetpack_mage_skin4.png-f7ccdd6bd73b9e61726831a7525daf88.ctex"]
 
 [params]
 

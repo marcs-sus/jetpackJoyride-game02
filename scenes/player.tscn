@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_0dbfk"]
 [ext_resource type="Texture2D" uid="uid://4oy2ry3wsu86" path="res://assets/sprites/magic_shoot.png" id="2_74qv8"]
-[ext_resource type="Texture2D" uid="uid://c54483424fuag" path="res://assets/sprites/jetpack_mage.png" id="2_ecbqq"]
+[ext_resource type="Texture2D" uid="uid://brj1uhy4r48vb" path="res://assets/sprites/jetpack_mage.png" id="2_ecbqq"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1a3jn"]
 particle_flag_disable_z = true

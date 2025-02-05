@@ -1,14 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://dllgpm4vxcpi0"]
+[gd_scene load_steps=13 format=3 uid="uid://dllgpm4vxcpi0"]
 
-[ext_resource type="Texture2D" uid="uid://cxee25wqklu2d" path="res://assets/sprites/magic_rune.png" id="1_gr487"]
+[ext_resource type="Texture2D" uid="uid://byb8u8snw0dn7" path="res://assets/sprites/magic_rune.png" id="1_gr487"]
 [ext_resource type="Script" path="res://scripts/MagicRune.cs" id="1_ktd4e"]
-[ext_resource type="Texture2D" uid="uid://dpcccqtlw6227" path="res://assets/sprites/magic_current.png" id="2_paicx"]
+[ext_resource type="Texture2D" uid="uid://dpc8kv8ult474" path="res://assets/sprites/magic_current.png" id="2_paicx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dujx7"]
 size = Vector2(250, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j72e2"]
 size = Vector2(150, 20)
+
+[sub_resource type="MeshTexture" id="MeshTexture_vsvjk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvf3g"]
+atlas = ExtResource("2_paicx")
+region = Rect2(32, 0, 32, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5bhm"]
+atlas = ExtResource("2_paicx")
+region = Rect2(64, 0, 32, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0548b"]
+atlas = ExtResource("2_paicx")
+region = Rect2(96, 0, 32, 19)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ry7x7"]
+frames = 4
+frame_0/texture = SubResource("MeshTexture_vsvjk")
+frame_1/texture = SubResource("AtlasTexture_gvf3g")
+frame_1/duration = 1.0
+frame_2/texture = SubResource("AtlasTexture_l5bhm")
+frame_2/duration = 1.0
+frame_3/texture = SubResource("AtlasTexture_0548b")
+frame_3/duration = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_islvw"]
 size = Vector2(50, 50)
@@ -39,8 +63,8 @@ shape = SubResource("RectangleShape2D_j72e2")
 texture_repeat = 2
 points = PackedVector2Array(80, 0, -80, 0)
 width = 32.0
-texture = ExtResource("2_paicx")
-texture_mode = 1
+texture = SubResource("AnimatedTexture_ry7x7")
+texture_mode = 2
 
 [node name="Rune1" type="Area2D" parent="."]
 position = Vector2(100, 0)

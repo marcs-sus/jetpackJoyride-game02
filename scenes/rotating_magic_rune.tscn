@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpvbqjsmr1a25"]
 
 [ext_resource type="Script" path="res://scripts/RotatingMagicRune.cs" id="1_nbtvi"]
-[ext_resource type="Texture2D" uid="uid://dpcccqtlw6227" path="res://assets/sprites/magic_current.png" id="2_x237s"]
-[ext_resource type="Texture2D" uid="uid://cxee25wqklu2d" path="res://assets/sprites/magic_rune.png" id="3_0vgfd"]
+[ext_resource type="Texture2D" uid="uid://dpc8kv8ult474" path="res://assets/sprites/magic_current.png" id="2_x237s"]
+[ext_resource type="Texture2D" uid="uid://byb8u8snw0dn7" path="res://assets/sprites/magic_rune.png" id="3_0vgfd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dujx7"]
 size = Vector2(250, 50)
