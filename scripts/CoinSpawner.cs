@@ -7,11 +7,11 @@ public partial class CoinSpawner : Node2D
 	[Export] public float SpawnInterval = 2.5f;
 
 	private Timer timer;
-	private CharacterBody2D player;
+	private Player player;
 
 	public override void _Ready()
 	{
-		player = GetNode<CharacterBody2D>("../Player");
+		player = GetNode<Player>("../Player");
 
 		timer = new Timer();
 		AddChild(timer);
@@ -22,14 +22,13 @@ public partial class CoinSpawner : Node2D
 
 	private void _OnTimerTimeout()
 	{
-		if (player != null)
-		{
-			SpawnCoin();
-		}
+		SpawnCoin();
 	}
 
 	private void SpawnCoin()
 	{
+		if (player.isDead) return;
+
 		if (CoinScene == null)
 		{
 			GD.PrintErr("No obstacle scene assigned");

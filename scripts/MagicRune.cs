@@ -45,7 +45,8 @@ public partial class MagicRune : Area2D
 		{
 			gameManager.StopScoreTracking();
 
-			body.QueueFree();
+			Player player = (Player)body;
+			player.Die();
 		}
 	}
 }

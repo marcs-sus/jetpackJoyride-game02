@@ -1,15 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=18 format=3 uid="uid://t8fgrjiynll"]
 
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
 [ext_resource type="PackedScene" uid="uid://lnl6mvnxvlb6" path="res://scenes/game_manager.tscn" id="1_g2kvj"]
 [ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_1m5h1"]
 [ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
-[ext_resource type="PackedScene" path="res://scenes/obstacles_destroyer.tscn" id="2_ebjsg"]
+[ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/destroyer.tscn" id="2_ebjsg"]
 [ext_resource type="Script" path="res://scripts/HighScore.cs" id="4_i44jo"]
 [ext_resource type="Script" path="res://scripts/CoinsLabel.cs" id="5_1k2pe"]
-[ext_resource type="Texture2D" uid="uid://bev3x376407eb" path="res://assets/sprites/coin.png" id="5_mdaw2"]
+[ext_resource type="Texture2D" uid="uid://dl6lnu57ie3ys" path="res://assets/sprites/coin.png" id="5_mdaw2"]
+[ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="7_nerqn"]
+[ext_resource type="Texture2D" uid="uid://gc47523b1oi2" path="res://assets/sprites/background_forest.png" id="7_q6lgn"]
 [ext_resource type="PackedScene" uid="uid://cfusuegia5qch" path="res://scenes/coin_spawner.tscn" id="9_t7mtx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm5mp"]
+atlas = ExtResource("5_mdaw2")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23jqx"]
+shader = ExtResource("7_nerqn")
+shader_parameter/speed = 0.25
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yyy72"]
 polygon = PackedVector2Array(-615, -300, 615, -300, 615, -400, -615, -400)
@@ -25,10 +35,10 @@ normal = Vector2(0, 20)
 [node name="GameManager" parent="." instance=ExtResource("1_g2kvj")]
 
 [node name="Score" type="Label" parent="."]
-offset_left = -533.0
-offset_top = -254.0
-offset_right = -439.0
-offset_bottom = -225.0
+offset_left = -531.0
+offset_top = -292.0
+offset_right = -437.0
+offset_bottom = -263.0
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_1m5h1")
 theme_override_font_sizes/font_size = 32
@@ -38,10 +48,10 @@ vertical_alignment = 1
 script = ExtResource("2_7yfne")
 
 [node name="HighScore" type="Label" parent="."]
-offset_left = -545.0
-offset_top = -220.0
-offset_right = -428.0
-offset_bottom = -204.0
+offset_left = -543.0
+offset_top = -258.0
+offset_right = -426.0
+offset_bottom = -242.0
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_1m5h1")
 theme_override_font_sizes/font_size = 18
@@ -51,10 +61,10 @@ vertical_alignment = 1
 script = ExtResource("4_i44jo")
 
 [node name="CoinsLabel" type="Label" parent="."]
-offset_left = -520.0
-offset_top = -190.0
-offset_right = -470.0
-offset_bottom = -172.0
+offset_left = -518.0
+offset_top = -228.0
+offset_right = -468.0
+offset_bottom = -210.0
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_1m5h1")
 theme_override_font_sizes/font_size = 20
@@ -64,29 +74,27 @@ vertical_alignment = 1
 script = ExtResource("5_1k2pe")
 
 [node name="Sprite2D" type="Sprite2D" parent="CoinsLabel"]
-position = Vector2(-15, 9)
-scale = Vector2(0.035, 0.035)
-texture = ExtResource("5_mdaw2")
+position = Vector2(-14, 10)
+scale = Vector2(1.1, 1.1)
+texture = SubResource("AtlasTexture_mm5mp")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -20
+material = SubResource("ShaderMaterial_23jqx")
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+texture = ExtResource("7_q6lgn")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Background" type="Panel" parent="."]
-z_index = -10
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -650.0
-offset_top = -400.0
-offset_right = 650.0
-offset_bottom = 400.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Borders" type="StaticBody2D" parent="."]
 
 [node name="ParticlesHider" type="LightOccluder2D" parent="Borders"]
+visible = false
 position = Vector2(0, 672)
 occluder = SubResource("OccluderPolygon2D_yyy72")
 
@@ -94,39 +102,17 @@ occluder = SubResource("OccluderPolygon2D_yyy72")
 position = Vector2(0, 275)
 shape = SubResource("WorldBoundaryShape2D_msw5g")
 
-[node name="FloorColor" type="ColorRect" parent="Borders"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -615.0
-offset_top = 275.0
-offset_right = 615.0
-offset_bottom = 400.0
-grow_horizontal = 2
-color = Color(0.0496345, 0.193448, 0.0505635, 1)
-
 [node name="Ceiling" type="CollisionShape2D" parent="Borders"]
 position = Vector2(0, -275)
 shape = SubResource("WorldBoundaryShape2D_7rf07")
 
-[node name="CeilingColor" type="ColorRect" parent="Borders"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -615.0
-offset_top = -400.0
-offset_right = 615.0
-offset_bottom = -275.0
-grow_horizontal = 2
-color = Color(0, 0.159128, 0.314605, 1)
-
 [node name="ObstacleSpawner" parent="." instance=ExtResource("1_460rf")]
-position = Vector2(1200, 0)
+position = Vector2(1150, 0)
 
 [node name="CoinSpawner" parent="." instance=ExtResource("9_t7mtx")]
 position = Vector2(1300, 0)
 
-[node name="ObstaclesDestroyer" parent="." instance=ExtResource("2_ebjsg")]
+[node name="Destroyer" parent="." instance=ExtResource("2_ebjsg")]
 position = Vector2(-1200, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_j150p")]

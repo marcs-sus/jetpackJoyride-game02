@@ -9,12 +9,12 @@ public partial class ObstacleSpawner : Node2D
 	[Export] public float SpawnInterval = 2.0f;
 
 	private Timer timer;
-	private CharacterBody2D player;
+	private Player player;
 	private Random random = new Random();
 
 	public override void _Ready()
 	{
-		player = GetNode<CharacterBody2D>("../Player");
+		player = GetNode<Player>("../Player");
 
 		timer = new Timer();
 		AddChild(timer);
@@ -25,14 +25,13 @@ public partial class ObstacleSpawner : Node2D
 
 	private void _OnTimerTimeout()
 	{
-		if (player != null)
-		{
-			SpawnObstacle();
-		}
+		SpawnObstacle();
 	}
 
 	private void SpawnObstacle()
 	{
+		if (player.isDead) return;
+
 		if (ObstacleScene == null)
 		{
 			GD.PrintErr("No obstacle scene assigned");
@@ -118,7 +117,7 @@ public partial class ObstacleSpawner : Node2D
 
 	private void SpawnHomingMagic(Area2D obstacle, float maxPosition)
 	{
-		float position = player != null ? player.Position.Y : 0.0f;
+		float position = !player.isDead ? player.Position.Y : 0.0f;
 		GD.Print($"Spawned {obstacle.Name}");
 
 		obstacle.Position = new Vector2(0, position);

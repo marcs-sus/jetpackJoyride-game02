@@ -10,17 +10,17 @@ public partial class HomingMagic : Area2D
 	private bool isWaningFinished = false;
 
 	private Timer warning;
-	private AnimatedSprite2D warningSprite;
-	private CharacterBody2D player;
+	private Sprite2D warningSprite;
+	private Player player;
 	private GameManager gameManager;
 
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("../../GameManager");
-		player = GetNode<CharacterBody2D>("../../Player");
+		player = GetNode<Player>("../../Player");
 
 		warning = GetNode<Timer>("Warning");
-		warningSprite = GetNode<AnimatedSprite2D>("WarningSprite");
+		warningSprite = GetNode<Sprite2D>("WarningSprite");
 
 		warning = new Timer();
 		AddChild(warning);
@@ -35,12 +35,9 @@ public partial class HomingMagic : Area2D
 		{
 			Position += new Vector2(FLyVelocity, 0) * ((float)delta * 80.0f);
 		}
-		else if (!isWaningFinished && player != null)
+		else if (!isWaningFinished && !player.isDead)
 		{
-			if (player != null)
-			{
-				Position = new Vector2(Position.X, Mathf.Lerp(Position.Y, player.Position.Y, HomingSpeed * (float)delta));
-			}
+			Position = new Vector2(Position.X, Mathf.Lerp(Position.Y, player.Position.Y, HomingSpeed * (float)delta));
 		}
 	}
 
@@ -56,7 +53,7 @@ public partial class HomingMagic : Area2D
 		{
 			gameManager.StopScoreTracking();
 
-			body.QueueFree();
+			player.Die();
 		}
 	}
 }

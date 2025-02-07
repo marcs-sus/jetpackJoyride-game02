@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpvbqjsmr1a25"]
+[gd_scene load_steps=21 format=3 uid="uid://bpvbqjsmr1a25"]
 
 [ext_resource type="Script" path="res://scripts/RotatingMagicRune.cs" id="1_nbtvi"]
-[ext_resource type="Texture2D" uid="uid://dpc8kv8ult474" path="res://assets/sprites/magic_current.png" id="2_x237s"]
-[ext_resource type="Texture2D" uid="uid://byb8u8snw0dn7" path="res://assets/sprites/magic_rune.png" id="3_0vgfd"]
+[ext_resource type="Texture2D" uid="uid://bjo86bjmf03sx" path="res://assets/sprites/magic_current_sprite_0.png" id="2_s1ya8"]
+[ext_resource type="Texture2D" uid="uid://b6xgwt5c610nc" path="res://assets/sprites/magic_rune.png" id="3_0vgfd"]
+[ext_resource type="Texture2D" uid="uid://fsrwicaocceb" path="res://assets/sprites/magic_current_sprite_1.png" id="3_hqxu6"]
+[ext_resource type="Texture2D" uid="uid://dn7up1sdf1otb" path="res://assets/sprites/magic_current_sprite_2.png" id="4_ao8rt"]
+[ext_resource type="Texture2D" uid="uid://c5arcbud36s0t" path="res://assets/sprites/magic_current_sprite_3.png" id="5_yskiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dujx7"]
 size = Vector2(250, 50)
@@ -10,14 +13,86 @@ size = Vector2(250, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j72e2"]
 size = Vector2(150, 20)
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_hufd7"]
+frames = 4
+speed_scale = 1.3
+frame_0/texture = ExtResource("2_s1ya8")
+frame_1/texture = ExtResource("3_hqxu6")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_ao8rt")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_yskiq")
+frame_3/duration = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_islvw"]
 size = Vector2(50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlmj4"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxauf"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m5r3"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0bk5"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ocb7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_0vgfd")
+"texture": SubResource("AtlasTexture_jlmj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxauf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m5r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0bk5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5y2v"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt387"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36pos"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq53e"]
+atlas = ExtResource("3_0vgfd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2lx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5y2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt387")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36pos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq53e")
 }],
 "loop": true,
 "name": &"default",
@@ -36,10 +111,9 @@ shape = SubResource("RectangleShape2D_dujx7")
 shape = SubResource("RectangleShape2D_j72e2")
 
 [node name="Line2D" type="Line2D" parent="MagicCurrent"]
-texture_repeat = 2
-points = PackedVector2Array(80, 0, -80, 0)
+points = PackedVector2Array(-80, 0, 80, 0)
 width = 32.0
-texture = ExtResource("2_x237s")
+texture = SubResource("AnimatedTexture_hufd7")
 texture_mode = 1
 
 [node name="Rune1" type="Area2D" parent="."]
@@ -49,8 +123,9 @@ position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_islvw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rune1"]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_4ocb7")
+autoplay = "default"
 
 [node name="Rune2" type="Area2D" parent="."]
 position = Vector2(-100, 0)
@@ -59,7 +134,8 @@ position = Vector2(-100, 0)
 shape = SubResource("RectangleShape2D_islvw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rune2"]
-scale = Vector2(0.05, 0.05)
-sprite_frames = SubResource("SpriteFrames_4ocb7")
+scale = Vector2(1.6, 1.6)
+sprite_frames = SubResource("SpriteFrames_c2lx4")
+autoplay = "default"
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]

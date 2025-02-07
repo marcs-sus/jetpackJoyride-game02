@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwbvvk7xeyvsj"]
 
-[ext_resource type="Script" path="res://scripts/ObstaclesDestroyer.cs" id="1_uus5b"]
+[ext_resource type="Script" path="res://scripts/Destroyer.cs" id="1_nmp6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0787h"]
 size = Vector2(100, 800)
 
-[node name="ObstaclesDestroyer" type="Area2D"]
-script = ExtResource("1_uus5b")
+[node name="Destroyer" type="Area2D"]
+script = ExtResource("1_nmp6k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0787h")

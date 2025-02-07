@@ -46,7 +46,8 @@ public partial class RotatingMagicRune : Area2D
 		{
 			gameManager.StopScoreTracking();
 
-			body.QueueFree();
+			Player player = (Player)body;
+			player.Die();
 		}
 	}
 }
