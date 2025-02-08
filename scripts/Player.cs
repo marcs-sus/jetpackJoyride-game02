@@ -12,18 +12,12 @@ public partial class Player : CharacterBody2D
 	private GameManager gameManager;
 	private GpuParticles2D projectileParticles;
 	private AnimatedSprite2D animatedSprite;
-	private ShaderMaterial bgShader;
-
 
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
 		projectileParticles = GetNode<GpuParticles2D>("Projectiles");
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-
-		bgShader = (ShaderMaterial)GetNode<TextureRect>("../Background").Material;
-
-		bgShader.SetShaderParameter("speed", 0.25f);
 
 		isDead = false;
 		wasFlying = false;
@@ -43,6 +37,11 @@ public partial class Player : CharacterBody2D
 			}
 			Velocity = velocity;
 			MoveAndSlide();
+
+			if (Input.IsActionJustPressed("reset"))
+			{
+				GetTree().ChangeSceneToFile("res://scenes/menu.tscn");
+			}
 
 			return;
 		}
@@ -86,8 +85,6 @@ public partial class Player : CharacterBody2D
 		isDead = true;
 		animatedSprite.Play("dying");
 		projectileParticles.Emitting = false;
-
-		bgShader.SetShaderParameter("speed", 0.0f);
 
 		GD.Print("YOU DIED");
 	}

@@ -1,24 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=14 format=3 uid="uid://t8fgrjiynll"]
 
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
+[ext_resource type="Script" path="res://scripts/Background.cs" id="1_admdg"]
 [ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_1m5h1"]
-[ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
 [ext_resource type="PackedScene" uid="uid://dwbvvk7xeyvsj" path="res://scenes/destroyer.tscn" id="2_ebjsg"]
-[ext_resource type="Script" path="res://scripts/HighScore.cs" id="4_i44jo"]
-[ext_resource type="Script" path="res://scripts/CoinsLabel.cs" id="5_1k2pe"]
+[ext_resource type="Script" path="res://scripts/Interface.cs" id="5_hpu0g"]
 [ext_resource type="Texture2D" uid="uid://dl6lnu57ie3ys" path="res://assets/sprites/coin.png" id="5_mdaw2"]
-[ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="7_nerqn"]
 [ext_resource type="Texture2D" uid="uid://gc47523b1oi2" path="res://assets/sprites/background_forest.png" id="7_q6lgn"]
 [ext_resource type="PackedScene" uid="uid://cfusuegia5qch" path="res://scenes/coin_spawner.tscn" id="9_t7mtx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mm5mp"]
-atlas = ExtResource("5_mdaw2")
-region = Rect2(0, 0, 20, 20)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_23jqx"]
-shader = ExtResource("7_nerqn")
-shader_parameter/speed = 0.25
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yyy72"]
 polygon = PackedVector2Array(-615, -300, 615, -300, 615, -400, -615, -400)
@@ -29,64 +19,25 @@ normal = Vector2(0, -20)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7rf07"]
 normal = Vector2(0, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm5mp"]
+atlas = ExtResource("5_mdaw2")
+region = Rect2(0, 0, 20, 20)
+
 [node name="Game" type="Node2D"]
-
-[node name="Score" type="Label" parent="."]
-offset_left = -531.0
-offset_top = -292.0
-offset_right = -437.0
-offset_bottom = -263.0
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_1m5h1")
-theme_override_font_sizes/font_size = 32
-text = "0000M"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_7yfne")
-
-[node name="HighScore" type="Label" parent="."]
-offset_left = -543.0
-offset_top = -258.0
-offset_right = -426.0
-offset_bottom = -242.0
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_1m5h1")
-theme_override_font_sizes/font_size = 18
-text = "Best: 0000M"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("4_i44jo")
-
-[node name="CoinsLabel" type="Label" parent="."]
-offset_left = -518.0
-offset_top = -228.0
-offset_right = -468.0
-offset_bottom = -210.0
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_1m5h1")
-theme_override_font_sizes/font_size = 20
-text = "000"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("5_1k2pe")
-
-[node name="Sprite2D" type="Sprite2D" parent="CoinsLabel"]
-position = Vector2(-14, 10)
-scale = Vector2(1.1, 1.1)
-texture = SubResource("AtlasTexture_mm5mp")
-
-[node name="Background" type="TextureRect" parent="."]
-z_index = -20
-material = SubResource("ShaderMaterial_23jqx")
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
-texture = ExtResource("7_q6lgn")
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
+position = Vector2(-5, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(4, 0)
+
+[node name="Background" type="Parallax2D" parent="."]
+z_index = -20
+repeat_size = Vector2(1152, 0)
+repeat_times = 3
+script = ExtResource("1_admdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+scale = Vector2(12, 12)
+texture = ExtResource("7_q6lgn")
 
 [node name="Borders" type="StaticBody2D" parent="."]
 
@@ -115,3 +66,77 @@ position = Vector2(-1200, 0)
 [node name="Player" parent="." instance=ExtResource("1_j150p")]
 unique_name_in_owner = true
 position = Vector2(-250, 230)
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_hpu0g")
+metadata/_edit_use_anchors_ = true
+
+[node name="Score" type="Label" parent="Interface"]
+layout_mode = 0
+offset_left = -531.0
+offset_top = -292.0
+offset_right = -437.0
+offset_bottom = -263.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 32
+text = "0000M"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HighScore" type="Label" parent="Interface"]
+layout_mode = 0
+offset_left = -543.0
+offset_top = -258.0
+offset_right = -426.0
+offset_bottom = -242.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 18
+text = "Best: 0000M"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CoinsLabel" type="Label" parent="Interface"]
+layout_mode = 0
+offset_left = -518.0
+offset_top = -228.0
+offset_right = -468.0
+offset_bottom = -210.0
+scale = Vector2(0.993394, 1)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 20
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Interface/CoinsLabel"]
+position = Vector2(-14, 10)
+scale = Vector2(1.1, 1.1)
+texture = SubResource("AtlasTexture_mm5mp")
+
+[node name="GameOver" type="Label" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.998638, 1.01202)
+theme_override_fonts/font = ExtResource("2_1m5h1")
+theme_override_font_sizes/font_size = 46
+text = "YOU DIED!
+Press Space to return to the menu"
+horizontal_alignment = 1
+vertical_alignment = 1

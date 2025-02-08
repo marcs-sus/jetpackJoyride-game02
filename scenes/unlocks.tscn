@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cr6ptxtv46k7l"]
+[gd_scene load_steps=18 format=3 uid="uid://cr6ptxtv46k7l"]
 
 [ext_resource type="Script" path="res://scripts/Unlocks.cs" id="1_ujdo7"]
 [ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="2_84unu"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b26po5uks2lo4" path="res://assets/sprites/jetpack_mage.png" id="3_j0fwe"]
 [ext_resource type="Texture2D" uid="uid://bjqrfwtypqyhe" path="res://assets/sprites/jetpack_mage_skin2.png" id="5_d7dj0"]
 [ext_resource type="Texture2D" uid="uid://dl6lnu57ie3ys" path="res://assets/sprites/coin.png" id="5_gjapp"]
-[ext_resource type="Script" path="res://scripts/CoinsLabel.cs" id="5_p1sd6"]
 [ext_resource type="Texture2D" uid="uid://d2kx1f71nu5j4" path="res://assets/sprites/jetpack_mage_skin3.png" id="6_5c8kk"]
 [ext_resource type="Texture2D" uid="uid://bt8afneh8qthy" path="res://assets/sprites/jetpack_mage_skin4.png" id="7_rbyjh"]
 
@@ -107,7 +106,6 @@ theme_override_font_sizes/font_size = 20
 text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("5_p1sd6")
 
 [node name="Sprite2D" type="Sprite2D" parent="CoinsLabel"]
 position = Vector2(-14.9246, 10.9064)
