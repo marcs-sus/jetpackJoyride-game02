@@ -9,14 +9,26 @@ public partial class Player : CharacterBody2D
 	public bool isDead = false;
 	private bool wasFlying = false;
 
+	private GameManager gameManager;
 	private GpuParticles2D projectileParticles;
 	private AnimatedSprite2D animatedSprite;
+	private ShaderMaterial bgShader;
 
 
 	public override void _Ready()
 	{
+		gameManager = GetNode<GameManager>("/root/GameManager");
 		projectileParticles = GetNode<GpuParticles2D>("Projectiles");
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		bgShader = (ShaderMaterial)GetNode<TextureRect>("../Background").Material;
+
+		bgShader.SetShaderParameter("speed", 0.25f);
+
+		isDead = false;
+		wasFlying = false;
+
+		animatedSprite.SpriteFrames = (SpriteFrames)GD.Load($"res://assets/sprites/spriteFrames/{gameManager.data["active_skin"]}.tres");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -75,7 +87,6 @@ public partial class Player : CharacterBody2D
 		animatedSprite.Play("dying");
 		projectileParticles.Emitting = false;
 
-		ShaderMaterial bgShader = (ShaderMaterial)GetNode<TextureRect>("../Background").Material;
 		bgShader.SetShaderParameter("speed", 0.0f);
 
 		GD.Print("YOU DIED");

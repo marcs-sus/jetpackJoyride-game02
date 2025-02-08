@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cslawclwgf3ku"]
+[gd_scene load_steps=9 format=3 uid="uid://cslawclwgf3ku"]
 
 [ext_resource type="Script" path="res://scripts/Options.cs" id="1_77vmu"]
+[ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="2_bdwoe"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_h7qfk"]
+[ext_resource type="Texture2D" uid="uid://gc47523b1oi2" path="res://assets/sprites/background_forest.png" id="3_r6mxd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffvqr"]
+shader = ExtResource("2_bdwoe")
+shader_parameter/speed = 0.05
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i68bp"]
 bg_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -36,7 +42,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_77vmu")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+z_index = -20
+material = SubResource("ShaderMaterial_ffvqr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_r6mxd")
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

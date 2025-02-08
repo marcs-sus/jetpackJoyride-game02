@@ -11,7 +11,7 @@ public partial class RotatingMagicRune : Area2D
 
 	public override void _Ready()
 	{
-		gameManager = GetNode<GameManager>("../../GameManager");
+		gameManager = GetNode<GameManager>("/root/GameManager");
 	}
 
 	public override void _Process(double delta)

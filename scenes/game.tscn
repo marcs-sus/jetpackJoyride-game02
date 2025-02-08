@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=17 format=3 uid="uid://t8fgrjiynll"]
 
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
-[ext_resource type="PackedScene" uid="uid://lnl6mvnxvlb6" path="res://scenes/game_manager.tscn" id="1_g2kvj"]
 [ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_1m5h1"]
 [ext_resource type="Script" path="res://scripts/Score.cs" id="2_7yfne"]
@@ -31,8 +30,6 @@ normal = Vector2(0, -20)
 normal = Vector2(0, 20)
 
 [node name="Game" type="Node2D"]
-
-[node name="GameManager" parent="." instance=ExtResource("1_g2kvj")]
 
 [node name="Score" type="Label" parent="."]
 offset_left = -531.0

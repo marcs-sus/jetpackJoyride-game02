@@ -9,15 +9,13 @@ public partial class Unlocks : Control
 
 	private CheckButton[] skinCheckButtons = new CheckButton[3];
 	private GameManager gameManager;
-	private Label coinLabel;
 
 	private readonly string filePath = ProjectSettings.GlobalizePath("user://saves/");
 	private readonly string fileName = "save_data.json";
 
 	public override void _Ready()
 	{
-		gameManager = GetNode<GameManager>("../GameManager");
-		coinLabel = GetNode<Label>("CoinsLabel");
+		gameManager = GetNode<GameManager>("/root/GameManager");
 
 		for (int i = 0; i < skinCheckButtons.Length; i++)
 		{
@@ -45,11 +43,6 @@ public partial class Unlocks : Control
 			if ((bool)gameManager.data[$"skin_{i + 2}"])
 				skinCheckButtons[i].Text = $"Skin {i + 2}";
 		}
-	}
-
-	public override void _Process(double delta)
-	{
-		coinLabel.Text = $"{gameManager.Coins.ToString("D3")}";
 	}
 
 	private void _OnBackPressed()

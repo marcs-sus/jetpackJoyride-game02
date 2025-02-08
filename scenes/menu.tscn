@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2hirncocafyr"]
+[gd_scene load_steps=7 format=3 uid="uid://c2hirncocafyr"]
 
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="1_25wmr"]
 [ext_resource type="Script" path="res://scripts/Menu.cs" id="1_tmhsb"]
+[ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="2_x7iam"]
+[ext_resource type="Texture2D" uid="uid://gc47523b1oi2" path="res://assets/sprites/background_forest.png" id="3_ls60u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjjff"]
+shader = ExtResource("2_x7iam")
+shader_parameter/speed = 0.05
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vryhh"]
 bg_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -20,7 +26,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tmhsb")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+z_index = -20
+material = SubResource("ShaderMaterial_mjjff")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ls60u")
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_25wmr")
 theme_override_font_sizes/font_size = 86
-text = "Tittle_Template"
+text = "Jetpack? Nah, Wand."
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
