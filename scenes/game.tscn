@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://t8fgrjiynll"]
+[gd_scene load_steps=15 format=3 uid="uid://t8fgrjiynll"]
 
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_1s040"]
 [ext_resource type="PackedScene" uid="uid://6ptijmaaxv47" path="res://scenes/obstacle_spawner.tscn" id="1_460rf"]
 [ext_resource type="Script" path="res://scripts/Background.cs" id="1_admdg"]
 [ext_resource type="PackedScene" uid="uid://b1vodkkgv5gqv" path="res://scenes/player.tscn" id="1_j150p"]
@@ -24,7 +25,7 @@ atlas = ExtResource("5_mdaw2")
 region = Rect2(0, 0, 20, 20)
 
 [node name="Game" type="Node2D"]
-position = Vector2(-5, 0)
+script = ExtResource("1_1s040")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(4, 0)

@@ -10,7 +10,7 @@ shader = ExtResource("2_x7iam")
 shader_parameter/speed = 0.05
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vryhh"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+bg_color = Color(0.415686, 0.415686, 0.415686, 0.490196)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8

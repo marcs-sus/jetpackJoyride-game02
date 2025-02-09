@@ -17,6 +17,14 @@ public partial class Unlocks : Control
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
+
+		if (!gameManager.menuMusic.IsPlaying() )
+		{
+			gameManager.menuMusic.Play();
+			gameManager.gameMusic.Stop();
+		}
+
+
 		coinsLabel = GetNode<Label>("CoinsLabel");
 
 		for (int i = 0; i < skinCheckButtons.Length; i++)

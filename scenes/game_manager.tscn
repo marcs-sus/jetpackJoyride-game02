@@ -1,7 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://lnl6mvnxvlb6"]
+[gd_scene load_steps=4 format=3 uid="uid://lnl6mvnxvlb6"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.cs" id="1_5lqdg"]
+[ext_resource type="AudioStream" uid="uid://ca5tymg3esakp" path="res://assets/music/main_soundtrack.wav" id="2_tni20"]
+[ext_resource type="AudioStream" uid="uid://dmis8yt1g63mm" path="res://assets/music/menu_soundtrack.wav" id="3_kllo3"]
 
 [node name="GameManager" type="Node"]
 unique_name_in_owner = true
 script = ExtResource("1_5lqdg")
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kllo3")
+bus = &"Music"
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_tni20")
+autoplay = true
+bus = &"Music"

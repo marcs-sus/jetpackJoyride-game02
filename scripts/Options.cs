@@ -8,8 +8,19 @@ public partial class Options : Control
 	private CheckButton fullscreenBtn;
 	private HSlider volumeSlider;
 
+	private GameManager gameManager;
+
 	public override void _Ready()
 	{
+		gameManager = GetNode<GameManager>("/root/GameManager");
+
+		if (!gameManager.menuMusic.IsPlaying())
+		{
+			gameManager.menuMusic.Play();
+			gameManager.gameMusic.Stop();
+		}
+
+
 		fullscreenBtn = GetNode<CheckButton>("MarginContainer/VBoxContainer/Fullscreen");
 		volumeSlider = GetNode<HSlider>("MarginContainer/VBoxContainer/VolumeSlider");
 

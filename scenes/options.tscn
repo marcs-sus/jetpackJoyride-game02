@@ -10,7 +10,7 @@ shader = ExtResource("2_bdwoe")
 shader_parameter/speed = 0.05
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i68bp"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+bg_color = Color(0.415686, 0.415686, 0.415686, 0.490196)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -18,7 +18,7 @@ corner_radius_bottom_left = 8
 shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uptx0"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+bg_color = Color(0.415686, 0.415686, 0.415686, 0.490196)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -26,7 +26,7 @@ corner_radius_bottom_left = 8
 shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vryhh"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+bg_color = Color(0.415686, 0.415686, 0.415686, 0.490196)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -116,8 +116,8 @@ vertical_alignment = 1
 
 [node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-min_value = -30.0
-max_value = 0.0
+min_value = -6.0
+max_value = 6.0
 
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

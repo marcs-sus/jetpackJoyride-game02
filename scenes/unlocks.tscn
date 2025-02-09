@@ -19,7 +19,7 @@ atlas = ExtResource("5_gjapp")
 region = Rect2(0, 0, 20, 20)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1iue"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 1)
+bg_color = Color(0.415686, 0.415686, 0.415686, 0.490196)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8

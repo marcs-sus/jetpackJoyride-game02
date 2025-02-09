@@ -15,14 +15,19 @@ public partial class GameManager : Node
 
 	public int Coins = 0;
 
+	public AudioStreamPlayer2D gameMusic, menuMusic;
+
 	public Dictionary data = new Dictionary();
-	Json jsonLoader = new Json();
+	private Json jsonLoader = new Json();
 	private readonly string filePath = ProjectSettings.GlobalizePath("user://saves/");
 	private readonly string fileName = "save_data.json";
 
 
 	public override void _Ready()
 	{
+		gameMusic = GetNode<AudioStreamPlayer2D>("GameMusic");
+		menuMusic = GetNode<AudioStreamPlayer2D>("MenuMusic");
+
 		if (!Directory.Exists(filePath))
 		{
 			Directory.CreateDirectory(filePath);
