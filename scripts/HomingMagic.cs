@@ -13,17 +13,22 @@ public partial class HomingMagic : Area2D
 	private Sprite2D warningSprite;
 	private Player player;
 	private GameManager gameManager;
+	private AudioStreamPlayer2D warningSFX, homingMagicSFX;
 
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
 		player = GetNode<Player>("../../Player");
 
+		warningSFX = GetNode<AudioStreamPlayer2D>("WarningSFX");
+		homingMagicSFX = GetNode<AudioStreamPlayer2D>("HomingMagicSFX");
+
 		warning = GetNode<Timer>("Warning");
 		warningSprite = GetNode<Sprite2D>("WarningSprite");
 
 		warning = new Timer();
 		AddChild(warning);
+		warningSFX.Play();
 		warning.WaitTime = WarningTimer;
 		warning.Timeout += _OnWarningTimeout;
 		warning.Start();
@@ -45,6 +50,8 @@ public partial class HomingMagic : Area2D
 	{
 		warningSprite.Visible = false;
 		isWaningFinished = true;
+
+		homingMagicSFX.Play();
 	}
 
 	private void _OnBodyEntered(Node2D body)

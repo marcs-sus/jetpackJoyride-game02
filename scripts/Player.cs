@@ -12,12 +12,15 @@ public partial class Player : CharacterBody2D
 	private GameManager gameManager;
 	private GpuParticles2D projectileParticles;
 	private AnimatedSprite2D animatedSprite;
+	private AudioStreamPlayer2D dyingSFX, wandFiringSFX;
 
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
 		projectileParticles = GetNode<GpuParticles2D>("Projectiles");
 		animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		dyingSFX = GetNode<AudioStreamPlayer2D>("DyingSFX");
+		wandFiringSFX = GetNode<AudioStreamPlayer2D>("WandFiringSFX");
 
 		isDead = false;
 		wasFlying = false;
@@ -50,6 +53,7 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.Y = Mathf.Lerp(velocity.Y, FlySpeed, Acceleration * (float)delta / Math.Abs(FlySpeed));
 			projectileParticles.Emitting = true;
+			wandFiringSFX.Play();
 
 			if (!wasFlying)
 			{
@@ -61,6 +65,7 @@ public partial class Player : CharacterBody2D
 		{
 			velocity += GetGravity() * (float)delta;
 			projectileParticles.Emitting = false;
+			wandFiringSFX.Stop();
 
 			if (wasFlying)
 			{
@@ -85,6 +90,7 @@ public partial class Player : CharacterBody2D
 		isDead = true;
 		animatedSprite.Play("dying");
 		projectileParticles.Emitting = false;
+		dyingSFX.Play();
 
 		GD.Print("YOU DIED");
 	}

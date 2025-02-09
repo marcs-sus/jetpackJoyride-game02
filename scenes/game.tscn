@@ -55,10 +55,10 @@ position = Vector2(0, -275)
 shape = SubResource("WorldBoundaryShape2D_7rf07")
 
 [node name="ObstacleSpawner" parent="." instance=ExtResource("1_460rf")]
-position = Vector2(1150, 0)
+position = Vector2(725, 0)
 
 [node name="CoinSpawner" parent="." instance=ExtResource("9_t7mtx")]
-position = Vector2(1300, 0)
+position = Vector2(875, 0)
 
 [node name="Destroyer" parent="." instance=ExtResource("2_ebjsg")]
 position = Vector2(-1200, 0)

@@ -6,10 +6,12 @@ public partial class Coin : Area2D
 	[Export] public float FLyVelocity = -5.0f;
 
 	private GameManager gameManager;
+	private AudioStreamPlayer2D pickupSFX;
 
 	public override void _Ready()
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
+		pickupSFX = GetNode<AudioStreamPlayer2D>("PickupSFX");
 	}
 
 	public override void _Process(double delta)
@@ -22,8 +24,8 @@ public partial class Coin : Area2D
 		if (body.IsInGroup("Player"))
 		{
 			gameManager.Coins++;
-
-			QueueFree();
+			pickupSFX.Play();
+			Visible = false;
 		}
 	}
 }
