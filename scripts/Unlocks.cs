@@ -18,7 +18,7 @@ public partial class Unlocks : Control
 	{
 		gameManager = GetNode<GameManager>("/root/GameManager");
 
-		if (!gameManager.menuMusic.IsPlaying() )
+		if (!gameManager.menuMusic.IsPlaying())
 		{
 			gameManager.menuMusic.Play();
 			gameManager.gameMusic.Stop();
