@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bgrhvwxdn4fis"]
 
 [ext_resource type="Texture2D" uid="uid://dd5f0khhwycmf" path="res://assets/sprites/homing_magic.png" id="1_8fw4s"]
-[ext_resource type="Script" path="res://scripts/HomingMagic.cs" id="1_p6byp"]
+[ext_resource type="Script" uid="uid://b16k25kqhclib" path="res://scripts/HomingMagic.cs" id="1_p6byp"]
 [ext_resource type="AudioStream" uid="uid://dudr23svqr4vh" path="res://assets/sounds/warning.wav" id="3_4pm4q"]
 [ext_resource type="AudioStream" uid="uid://bp7x5yoxw6pl4" path="res://assets/sounds/homing_magic.wav" id="4_64ii5"]
 

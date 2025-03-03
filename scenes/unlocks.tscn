@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cr6ptxtv46k7l"]
 
-[ext_resource type="Script" path="res://scripts/Unlocks.cs" id="1_ujdo7"]
-[ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="2_84unu"]
+[ext_resource type="Script" uid="uid://cnfb5q3roi0n1" path="res://scripts/Unlocks.cs" id="1_ujdo7"]
+[ext_resource type="Shader" uid="uid://q5qcbgs5qmh1" path="res://shader/scrollbg.gdshader" id="2_84unu"]
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_vo6y8"]
 [ext_resource type="Texture2D" uid="uid://gc47523b1oi2" path="res://assets/sprites/background_forest.png" id="3_bm8da"]
 [ext_resource type="Texture2D" uid="uid://b26po5uks2lo4" path="res://assets/sprites/jetpack_mage.png" id="3_j0fwe"]

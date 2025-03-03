@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2hirncocafyr"]
 
 [ext_resource type="FontFile" uid="uid://c84kffrxpy8be" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="1_25wmr"]
-[ext_resource type="Script" path="res://scripts/Menu.cs" id="1_tmhsb"]
-[ext_resource type="Shader" path="res://shader/scrollbg.gdshader" id="2_x7iam"]
+[ext_resource type="Script" uid="uid://c40yf2qmad3v0" path="res://scripts/Menu.cs" id="1_tmhsb"]
+[ext_resource type="Shader" uid="uid://q5qcbgs5qmh1" path="res://shader/scrollbg.gdshader" id="2_x7iam"]
 [ext_resource type="Texture2D" uid="uid://gc47523b1oi2" path="res://assets/sprites/background_forest.png" id="3_ls60u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mjjff"]

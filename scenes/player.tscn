@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1vodkkgv5gqv"]
 
-[ext_resource type="Script" path="res://scripts/Player.cs" id="1_0dbfk"]
+[ext_resource type="Script" uid="uid://thpxhbr7qr18" path="res://scripts/Player.cs" id="1_0dbfk"]
 [ext_resource type="Texture2D" uid="uid://be7p3qtmgvmbh" path="res://assets/sprites/magic_shoot.png" id="2_orpjn"]
 [ext_resource type="SpriteFrames" uid="uid://dhngdvrsbt0qr" path="res://assets/sprites/spriteFrames/default.tres" id="3_vdacf"]
 [ext_resource type="AudioStream" uid="uid://8xv62ca60w6o" path="res://assets/sounds/wand_firing.wav" id="4_xiqxf"]
@@ -35,7 +35,6 @@ z_index = -10
 position = Vector2(0, 35)
 emitting = false
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_1a3jn")
 texture = ExtResource("2_orpjn")
 lifetime = 5.0
 randomness = 1.0
@@ -43,6 +42,7 @@ fixed_fps = 60
 collision_base_size = 0.3
 trail_enabled = true
 trail_lifetime = 0.1
+process_material = SubResource("ParticleProcessMaterial_1a3jn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jghlj")

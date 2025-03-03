@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://bpvbqjsmr1a25"]
 
-[ext_resource type="Script" path="res://scripts/RotatingMagicRune.cs" id="1_nbtvi"]
+[ext_resource type="Script" uid="uid://dj8q0k6co6vt2" path="res://scripts/RotatingMagicRune.cs" id="1_nbtvi"]
 [ext_resource type="Texture2D" uid="uid://bjo86bjmf03sx" path="res://assets/sprites/magic_current_sprite_0.png" id="2_s1ya8"]
 [ext_resource type="Texture2D" uid="uid://b6xgwt5c610nc" path="res://assets/sprites/magic_rune.png" id="3_0vgfd"]
 [ext_resource type="Texture2D" uid="uid://fsrwicaocceb" path="res://assets/sprites/magic_current_sprite_1.png" id="3_hqxu6"]

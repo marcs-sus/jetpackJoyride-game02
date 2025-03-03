@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwbvvk7xeyvsj"]
 
-[ext_resource type="Script" path="res://scripts/Destroyer.cs" id="1_nmp6k"]
+[ext_resource type="Script" uid="uid://c6ksyoh0xup6j" path="res://scripts/Destroyer.cs" id="1_nmp6k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0787h"]
 size = Vector2(100, 800)
