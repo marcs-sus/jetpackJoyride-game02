@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="jetpackJoyride_game02"
+config/name="jetpackJoyride-game02"
+config/description="A recreation of the game Jetpack Joyride, using the Godot Engine with its C# kit"
+config/tags=PackedStringArray("the_20_games_challenge")
 run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.png"
